@@ -2,34 +2,39 @@
 // Quando a API estiver pronta, basta trocar para: 'http://localhost:3000/api'
 const BASE_URL = 'http://localhost:3000/';
 
-// Retorna todos os jogos
+// Função genérica para requisições GET
+async function getDados(endpoint) {
+    try {
+        const response = await fetch(`${BASE_URL}${endpoint}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log(`Dados de ${endpoint}:`, data);
+
+        return data;
+
+    } catch (error) {
+        console.error(`Erro ao buscar ${endpoint}:`, error);
+        return [];
+    }
+}
+
+// Funções específicas
 async function getJogos() {
-    const response = await fetch (`${BASE_URL}api/jogos`);
-    const data = await response.json();
-    console.log(response)
-    return data;
+    return await getDados('api/jogos');
 }
 
-// Retorna todos os times
 async function getTimes() {
-    const response = await fetch (`${BASE_URL}api/times`);
-    const data = await response.json();
-    console.log(response)
-    return data;
+    return await getDados('api/times');
 }
 
-// Retorna todos os competidores
 async function getCompetidores() {
-    const response = await fetch (`${BASE_URL}api/competidores`);
-    const data = await response.json();
-    console.log(response)
-    return data;
+    return await getDados('api/competidores');
 }
 
-// Retorna todos os confrontos
 async function getConfrontos() {
-    const response = await fetch (`${BASE_URL}api/confrontos`);
-    const data = await response.json();
-    console.log(response)
-    return data;
+    return await getDados('api/confrontos');
 }
