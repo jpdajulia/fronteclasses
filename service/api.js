@@ -1,6 +1,6 @@
 // BASE_URL aponta para o JSON local enquanto a API não está integrada.
 // Quando a API estiver pronta, basta trocar para: 'http://localhost:3000/api'
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://localhost:3000/api';
 
 // Função genérica para requisições GET
 async function getDados(endpoint) {
@@ -24,17 +24,17 @@ async function getDados(endpoint) {
 
 // Funções específicas
 async function getJogos() {
-    return await getDados('api/jogos');
+    return await getDados('/jogos');
 }
 
 async function getTimes() {
-    return await getDados('api/times');
+    return await getDados('/times');
 }
 
 async function getCompetidores() {
-    return await getDados('api/competidores');
+    return await getDados('/competidores');
 }
 
 async function getConfrontos() {
-    return await getDados('api/confrontos');
+    return await getDados('/confrontos');
 }
